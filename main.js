@@ -12,6 +12,8 @@ const eletkor = Array.from(dogs).sort((a,b) =>{
 
 const labrador = dogs.filter( kutya => kutya.fajta == "Labrador").map(kutya => `${kutya.nev}(${kutya.eletkor} éves)`);
 
+const labrador2 = dogs.filter( kutya => kutya.fajta == "Labrador").map(kutya => ({Nev:kutya.nev, Eletkor:kutya.eletkor}));
+
 const idosebbmint10 = dogs.filter ( kutya => kutya.eletkor > 10).map(kutya => `${kutya.gazda_neve}`);
 
 
@@ -24,6 +26,7 @@ function init(){
   document.getElementById("gomb1").addEventListener("click", megjelenites);
   document.getElementById("gomb2").addEventListener("click", megjelenites2);
   document.getElementById("gomb3").addEventListener("click", megjelenites3);
+  document.getElementById("gomb2/b").addEventListener("click", megjelenites4);
 }
 
 function megjelenites() {
@@ -79,6 +82,24 @@ function megjelenites3() {
     const celltext = document.createTextNode(t);
     cell.appendChild(celltext);
     row.appendChild(cell);
+    tbody.appendChild(row);
+  }
+  table2.appendChild(tbody);
+}
+
+function megjelenites4() {
+  table2.innerHTML = "<thead><tr><td>Kutya Nev</td><td>Eletkor</td></tr></thead>";
+  const tbody = document.createElement("tbody");
+  for (const t of labrador2){
+    const row = document.createElement("tr");
+    const cell = document.createElement("td");
+    const cell2 = document.createElement("td");
+    const celltext = document.createTextNode(t.Nev);
+    const celltext2 = document.createTextNode(t.Eletkor);
+    cell.appendChild(celltext);
+    cell2.appendChild(celltext2);
+    row.appendChild(cell);
+    row.appendChild(cell2);
     tbody.appendChild(row);
   }
   table2.appendChild(tbody);
